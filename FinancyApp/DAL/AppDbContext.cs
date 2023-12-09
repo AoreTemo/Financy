@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL;
 
-public class AppDbContext: IdentityDbContext<AppUser>
+public class AppDbContext : IdentityDbContext<AppUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
     : base(options)
@@ -17,5 +17,7 @@ public class AppDbContext: IdentityDbContext<AppUser>
 
     }
 
-
+    public DbSet<AppUser> AppUser { get; set; }
+    public DbSet<Costs> Costs { get; set; }
+    public DbSet<Category> Category { get; set; }
 }

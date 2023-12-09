@@ -1,3 +1,8 @@
+using DAL;
+using DAL.Interfaces;
+using DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 namespace FinancyApp
 {
     public class Program
@@ -5,6 +10,13 @@ namespace FinancyApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var connectionString = builder.Configuration.GetConnectionString("DefaultString");
+
+            builder.Services.AddDbContext<AppDbContext>(
+                options => options.UseSqlServer(connectionString)
+            );
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
