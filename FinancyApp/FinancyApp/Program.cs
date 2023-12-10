@@ -1,7 +1,10 @@
 using DAL;
 using DAL.Interfaces;
 using DAL.Repositories;
+using FinancyApp.Controllers;
 using Microsoft.EntityFrameworkCore;
+using SmartBreadcrumbs;
+using SmartBreadcrumbs.Extensions;
 
 namespace FinancyApp
 {
@@ -13,6 +16,7 @@ namespace FinancyApp
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultString");
 
+
             builder.Services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(connectionString)
             );
@@ -20,7 +24,6 @@ namespace FinancyApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
             var app = builder.Build();
             
             // Configure the HTTP request pipeline.

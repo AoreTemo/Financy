@@ -1,9 +1,11 @@
-﻿using FinancyApp.Models;
+﻿using FinancyApp.Filters;
+using FinancyApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace FinancyApp.Controllers
 {
+    [Breadcrumb(Title = "Home")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,7 +19,6 @@ namespace FinancyApp.Controllers
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
