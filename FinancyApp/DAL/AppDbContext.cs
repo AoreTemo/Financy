@@ -17,7 +17,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
 
     }
 
-    public DbSet<AppUser> AppUser { get; set; }
-    public DbSet<Costs> Costs { get; set; }
-    public DbSet<Category> Category { get; set; }
+    public DbSet<AppUser> AppUsers { get; set; }
+    public DbSet<Cost> Costs { get; set; }
+    public DbSet<Category> Categories { get; set; }
 }

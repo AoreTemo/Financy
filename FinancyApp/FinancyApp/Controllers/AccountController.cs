@@ -18,10 +18,10 @@ public class AccountController : Controller
         _roleManager = roleManager;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+    // public IActionResult Index()
+    // {
+    //     return View();
+    // }
 
     [HttpGet]
     public IActionResult Register()

@@ -9,7 +9,9 @@ namespace DL.Entities;
 
 public class AppUser: IdentityUser
 {
-    public string UserName { get; set; }
-    public string Email { get; set; }
     public int Balance { get; set; }
+    public string ConfirmPassword { get; set; }
+    
+    public List<Category> Categories { get; set; }
+    public List<Cost> Costs { get; set; }
 }
