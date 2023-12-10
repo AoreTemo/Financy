@@ -1,4 +1,8 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity;
+@using DL.Entities;
+@inject UserManager<AppUser> UserManager
+@inject SignInManager<AppUser> SignInManager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +29,7 @@
             <ul class="navigation-list">
                 <li>
                     <img class="img-item" src="photos/log_in.png">
-                    <a class="list-text">Log in</a>
+                    <a asp-controller="Account" asp-action="Login" class="list-text">Log in</a>
                 </li>
                 <li>
                     <img class="img-item" src="photos/registration-icon-1.png" />

@@ -34,4 +34,16 @@ public class AccountController : Controller
     {
         return RedirectToAction("Index", "Home");
     }
+
+    [HttpGet]
+    public IActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+    {
+       return RedirectToAction("Index", "Home");
+    }
 }

@@ -1,0 +1,145 @@
+﻿.login-back {
+    background-color: #8b62ac;
+}
+
+.login-container {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    padding: 100px 0;
+}
+
+.form {
+    max-width: 570px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #c0c0c0;
+    padding: 100px;
+    border-radius: 10px;
+    transition: box-shadow 0.7s;
+}
+
+    .form:hover {
+        box-shadow: -7px -7px 28px -5px #3e4f6a;
+    }
+
+.form-title {
+    margin-bottom: 30px;
+    font-size: 26px;
+    font-weight: 600;
+    font-family: "Anonymous Pro";
+    text-align: center;
+}
+
+.form-label {
+    padding: 10px;
+    font-family: "Anonymous Pro";
+    text-align: start;
+}
+
+.group {
+    position: relative;
+}
+
+.form-control {
+    margin-bottom: 45px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #6c6c6c;
+    background: transparent;
+    color: #ffffff;
+}
+
+    .form-control:focus {
+        outline: none;
+    }
+
+.login-lable {
+    color: black;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 1px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.form-control:focus ~ .login-lable,
+.form-control:valid ~ .login-lable {
+    top: -25px;
+    font-size: 14px;
+    color: #0e94f4;
+}
+
+.lable-active {
+    top: -25px;
+    font-size: 14px;
+    color: #0e94f4;
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 200px;
+}
+
+    .bar:before,
+    .bar:after {
+        content: "";
+        height: 2px;
+        width: 0px;
+        bottom: 1px;
+        position: absolute;
+        background: #0e94f4;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    .bar:before {
+        left: 50%;
+    }
+
+    .bar::after {
+        right: 50%;
+    }
+
+.form-control:focus ~ .bar:before,
+.form-control:focus ~ .bar:after {
+    width: 50%;
+}
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 0;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.form-control:focus ~ .highlight {
+    animation: input-focus 0.5 ease;
+}
+
+@keyframes input-focus {
+    from {
+        background: #1486d7;
+    }
+
+    to {
+        width: 185px;
+        background: transparent;
+    }
+}
