@@ -15,36 +15,32 @@
 </head>
 <body>
     <header>
-        <div class="menu">
-            <div class="heading">
+        <div class="heading">
             <img class="menu-avatar" src="photos/Main-photo.png">
             <div class="title">
                 <h1>Financy App</h1>
             </div>
         </div>
-            <div class="list-menu">
-                <ul class="navigation-list">
-                    <li>
-                        <img class="img-item" src="photos/log_in.png">
-                        <a class="list-text" href="#">Log in</a>
-                    </li>
-                    <li>
-                        <img class="img-item" src="photos/registration-icon-1.png"  />
-                        <a class="list-text" href="#">Register</a>
-                    </li>
-                    <li>
-                        <img class="img-item" src="photos/info_icon-1.png" />
-                        <a class="list-text" href="#">About us</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="list-menu">
+            <ul class="navigation-list">
+                <li>
+                    <img class="img-item" src="photos/log_in.png">
+                    <a class="list-text">Log in</a>
+                </li>
+                <li>
+                    <img class="img-item" src="photos/registration-icon-1.png" />
+                        <a asp-controller="Account" asp-action="Register" class="list-text">Register</a>
+                </li>
+                <li>
+                    <img class="img-item" src="photos/info_icon-1.png" />
+                    <a class="list-text">About us</a>
+                </li>
+            </ul>
         </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <main role="main" class="pb-3" style="margin-left:341px">
+        @RenderBody()
+    </main>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

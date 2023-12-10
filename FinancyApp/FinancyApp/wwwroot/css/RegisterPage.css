@@ -1,0 +1,85 @@
+﻿.register-back {
+    background-color: #72ED76;
+}
+
+.Register-container {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 100px 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    max-width: 570px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #c0c0c0;
+    padding: 100px;
+    border-radius: 10px;
+    transition: box-shadow 0.7s;
+}
+
+.group {
+    position: relative;
+}
+
+.form-control {
+    margin-bottom: 45px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #6c6c6c;
+    background: transparent;
+}
+
+    .form-control:focus {
+        outline: none;
+    }
+
+.register-lable {
+    color: black;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 1px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.form-control:focus ~ .register-lable,
+.form-control:valid ~ .register-lable {
+    top: -25px;
+    font-size: 14px;
+    color: #0e94f4;
+}
+
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 0;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.form-control:focus ~ .highlight {
+    animation: input-focus 0.5 ease;
+}
+
+@keyframes input-focus {
+    from {
+        background: #1486d7;
+    }
+
+    to {
+        width: 185px;
+        background: transparent;
+    }
+}

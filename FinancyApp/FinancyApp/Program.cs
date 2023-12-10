@@ -1,7 +1,9 @@
 using DAL;
 using DAL.Interfaces;
 using DAL.Repositories;
+using DL.Entities;
 using FinancyApp.Controllers;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmartBreadcrumbs;
 using SmartBreadcrumbs.Extensions;
@@ -22,10 +24,19 @@ namespace FinancyApp
             );
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
+            .AddDefaultTokenProviders()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddSignInManager<SignInManager<AppUser>>();
+
+            builder.Services.AddScoped<UserManager<AppUser>>();
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             var app = builder.Build();
-            
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

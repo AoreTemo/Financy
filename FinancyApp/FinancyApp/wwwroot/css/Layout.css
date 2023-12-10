@@ -7,6 +7,11 @@
 }
 
 header {
+    padding: 7vh 50px;
+    position: fixed;
+    background-color: #5C7356;
+    height: 100%;
+    position: fixed;
     border: 1px solid #000;
     background: #5C7356;
 }
@@ -35,16 +40,17 @@ header {
 }
 
 .list-menu li{
-    margin: 25px 0px;
+    margin: 40px 0px;
     padding: 0;
 }
 
-.menu {
+/*.menu {
     padding: 7vh 50px;
     position: fixed;
     background-color: #5C7356;
     height: 100%;
-}
+    position: fixed;
+}*/
 
 .list-text {
     text-decoration: unset;
