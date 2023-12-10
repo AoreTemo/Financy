@@ -10,6 +10,7 @@ public class Costs
 {
     public int CostsId { get; set; }
     public string CostsDescription { get; set; }
+    public int Amount { get; set; }
     public DateTime CostsDate { get; set; }
 
     [ForeignKey("AppUser")]

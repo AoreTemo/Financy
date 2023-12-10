@@ -12,6 +12,8 @@ public class Category
 {
     public int CategoryId { get; set; }
     public string CategoryName { get; set; }
+    public string CategoryColor { get; set; }
+
     [ForeignKey("AppUser")]
     public string AppUserId { get; set; }
 
