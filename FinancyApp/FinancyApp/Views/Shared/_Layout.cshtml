@@ -26,21 +26,30 @@
             </div>
         </div>
         <div class="list-menu">
+
             <ul class="navigation-list">
+                @if (SignInManager.IsSignedIn(User)) //пока не трогаю
+                {
+                
                 <li>
                     <img class="img-item" src="photos/log_in.png">
                     <a asp-controller="Account" asp-action="Login" class="list-text">Log in</a>
                 </li>
                 <li>
                     <img class="img-item" src="photos/registration-icon-1.png" />
-                        <a asp-controller="Account" asp-action="Register" class="list-text">Register</a>
+                    <a asp-controller="Account" asp-action="Register" class="list-text">Register</a>
                 </li>
                 <li>
                     <img class="img-item" src="photos/info_icon-1.png" />
                     <a class="list-text">About us</a>
                 </li>
+                }
+                else{
+
+                }
             </ul>
         </div>
+
     </header>
     <main role="main" class="pb-3" style="margin-left:341px">
         @RenderBody()
