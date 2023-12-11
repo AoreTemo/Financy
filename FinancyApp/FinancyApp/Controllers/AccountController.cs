@@ -99,4 +99,17 @@ public class AccountController : Controller
 
         return View(loginViewModel);
     }
+
+    public async Task<IActionResult> LogOut()
+    {
+        await _signInManager.SignOutAsync();
+
+        return RedirectToAction("Index", "Home");
+    }
+
+    [HttpGet]
+    public IActionResult Info()
+    {
+        return View();
+    }
 }

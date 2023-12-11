@@ -31,6 +31,13 @@ public abstract class GenericService<T> : IGenericService<T> where T : class
         return item;
     }
 
+    public T? GetById(string id)
+    {
+        var item = _repository.FindById(id);
+
+        return item;
+    }
+
     public List<T> GetByPredicate(Expression<Func<T, bool>> filter = null, Expression<Func<IQueryable<T>, IOrderedQueryable<T>>> orderBy = null)
     {
         var query = _repository.GetAllAsList().AsQueryable();
