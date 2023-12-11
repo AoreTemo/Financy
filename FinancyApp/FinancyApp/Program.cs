@@ -28,6 +28,8 @@ namespace FinancyApp
 
             builder.Services.AddScoped<AppUserService>();
 
+            builder.Services.AddScoped<CostService>();
+
             builder.Services.AddIdentity<AppUser, IdentityRole>()
             .AddDefaultTokenProviders()
             .AddRoles<IdentityRole>()
