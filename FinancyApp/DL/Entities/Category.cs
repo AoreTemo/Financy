@@ -20,6 +20,6 @@ public class Category
     [ForeignKey("AppUser")]
     public string Id { get; set; }
     
-    public List<Cost> Costs { get; set; }
+    public List<Cost>? Costs { get; set; }
 
 }
