@@ -1,3 +1,4 @@
+using BLL.Services;
 using DAL;
 using DAL.Interfaces;
 using DAL.Repositories;
@@ -22,7 +23,10 @@ namespace FinancyApp
             builder.Services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(connectionString)
             );
+
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            builder.Services.AddScoped<AppUserService>();
 
             builder.Services.AddIdentity<AppUser, IdentityRole>()
             .AddDefaultTokenProviders()

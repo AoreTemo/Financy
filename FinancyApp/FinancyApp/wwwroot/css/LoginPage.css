@@ -1,10 +1,13 @@
-﻿.login-back {
+﻿.html, main {
+    height: 100%
+}
+
+.login-back {
     background-color: #8b62ac;
 }
 
 .login-container {
     max-width: 1220px;
-    margin: 0 auto;
     padding: 0 10px;
     display: flex;
     justify-content: center;

@@ -13,6 +13,7 @@ public interface IRepository<T> where T : class
     DbSet<T> GetAllAsTable();
     void Add(T item);
     T? FindById(int id);
+    T? FindById(string id);
     void SaveChanges();
 }
 

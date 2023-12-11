@@ -5,8 +5,14 @@
     ViewData["Title"] = "Login";
 }
 <link rel="stylesheet" href="~/css/LoginPage.css" />
-<main class="login-back">
-    <section class="login-form">
+<link rel="stylesheet" href="~/css/Breadcrumbs.css" />
+<div class=" container d-flex ">
+    <ul class="pagination shadow-lg">
+        <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+        <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Log in </small></a></li>
+    </ul>
+</div>
+    <section class="login-form" style="height: 100%">
         <div class="login-container">
             @*<div class="row g-5">*@
             <div class="col-md-7 col-lg-8">
@@ -36,7 +42,7 @@
             @*</div>*@
         </div>
     </section>
-</main>
+    <script src="~/js/site.js"></script>
 <script>
     var element = document.getElementById('myElement');
     element.click();
@@ -52,3 +58,4 @@
         });
     });
 </script>
+

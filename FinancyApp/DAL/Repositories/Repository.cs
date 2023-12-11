@@ -47,6 +47,12 @@ public class Repository<T> : IRepository<T> where T : class
 
         return item;
     }
+    public T? FindById(string id)
+    {
+        var item = _table.Find(id);
+
+        return item;
+    }
 
     public void SaveChanges()
     {
