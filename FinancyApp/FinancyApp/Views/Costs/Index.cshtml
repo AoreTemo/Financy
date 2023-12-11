@@ -1,0 +1,57 @@
+﻿@using FinancyApp.Models;
+@model CostViewModel;
+
+@{
+
+}
+
+<link rel="stylesheet" href="~/css/Breadcrumbs.css" />
+<div class=" container d-flex ">
+    <ul class="pagination shadow-lg">
+        <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+        <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Create cost</small></a></li>
+    </ul>
+</div>
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card" style="width: 50%;">
+        <div class="card-body">
+            <h1 class="card-title" style="padding:20px 0">Create your cost</h1>
+            <form  asp-controller = "Costs" asp-action="Add" class="row g-3 needs-validation">
+                <div class="col-md-4">
+                    <label for="costDescription" class="form-label">Cost Description</label>
+                    <textarea asp-for="CostDescription" class="form-control" id="costDescription" rows="3" required></textarea>
+                    <div class="invalid-feedback">
+                        Cost description is required.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input asp-for="Amount" type="number" class="form-control" id="amount" required>
+                    <div class="invalid-feedback">
+                        Amount is required.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="costDate" class="form-label">Cost Date</label>
+                    <input asp-for="CostDate" type="date" class="form-control" id="costDate" required>
+                    <div class="invalid-feedback">
+                        Cost date is required.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option value="1">Entartaiment</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a category.
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
