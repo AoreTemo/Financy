@@ -23,11 +23,14 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<AppUserService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+
+builder.Services.AddScoped<CostService>();
+
 builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddDefaultTokenProviders()
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddSignInManager<SignInManager<AppUser>>();
+.AddDefaultTokenProviders()
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<AppDbContext>()
+.AddSignInManager<SignInManager<AppUser>>();
 
 builder.Services.AddScoped<UserManager<AppUser>>();
 
