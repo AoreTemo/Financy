@@ -41,7 +41,7 @@ public class Repository<T> : IRepository<T> where T : class
         }
     }
 
-    public T? FindById(int id)
+    public T? FindById(object id)
     {
         var item = _table.Find(id);
 

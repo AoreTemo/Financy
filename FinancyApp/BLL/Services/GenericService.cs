@@ -31,13 +31,13 @@ public abstract class GenericService<T> : IGenericService<T> where T : class
         _repository.SaveChanges();
     }
 
-    public T? GetById(int id)
+    public T? GetById(object id)
     {
         var item = _repository.FindById(id);
 
         return item;
     }
-  
+
     public List<T> GetByPredicate(
         Expression<Func<T, bool>> filter = null, 
         Expression<Func<IQueryable<T>, IOrderedQueryable<T>>> orderBy = null)

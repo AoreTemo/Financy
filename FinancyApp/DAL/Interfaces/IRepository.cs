@@ -14,7 +14,7 @@ public interface IRepository<T> where T : class
     void Add(T item);
     void Update(T item);
     void Delete(int id);
-    T? FindById(int id);
+    T? FindById(object id);
     T? FindById(string id);
     void SaveChanges();
 }
