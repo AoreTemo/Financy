@@ -1,1 +1,17 @@
-﻿
+﻿@using BLL.Services
+@using FinancyApp.Models;
+@model AppUserViewModel;
+@inject AppUserService appUserService
+@{
+    var user = appUserService.GetById(Model.UserId);
+}
+<link rel="stylesheet" href="~/css/Breadcrumbs.css" />
+<header class="header">
+    <h1 class="header-text">Account</h1>
+</header>
+<div class=" container d-flex ">
+    <ul class="pagination shadow-lg">
+        <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+        <li class="page-item active"><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Account</small></a></li>
+    </ul>
+</div>

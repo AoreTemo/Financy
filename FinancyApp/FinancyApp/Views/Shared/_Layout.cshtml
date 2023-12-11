@@ -83,12 +83,6 @@
 
     </div>
     <main role="main">
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <header class="header">
-                <h1>Header</h1>
-            </header>
-        }
         @RenderBody()
     </main>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
