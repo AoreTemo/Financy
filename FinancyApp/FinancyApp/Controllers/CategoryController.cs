@@ -30,7 +30,14 @@ public class CategoryController : Controller
     [HttpPost]
     public IActionResult Add(Category category)
     {
-        _categoryService.Add(category);
+        var newCategory = new Category
+        {
+            CategoryName = category.CategoryName,
+            CategoryColor = category.CategoryColor,
+            Id = User.FindFirst(ClaimTypes.NameIdentifier)!.Value
+        };
+        
+        _categoryService.Add(newCategory);
         
         return RedirectToAction("Index", "Costs");
     }
