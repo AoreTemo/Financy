@@ -6,11 +6,17 @@
 }
 
 <link rel="stylesheet" href="~/css/RegisterPage.css" />
+<link rel="stylesheet" href="~/css/Breadcrumbs.css" />
 <main class="register-back">
+    <div class=" container d-flex ">
+        <ul class="pagination shadow-lg">
+            <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+            <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Register</small></a></li>
+        </ul>
+    </div>
     <div class="Register-form">
         <div class="Register-container">
             @*<@*div class="row g-5">*@
-            <div class="col-md-7 col-lg-8">
                 <form method="post" asp-action="Register" enctype="multipart/form-data" class="form">
                     <h1 id="myElement" class="form-title" style="padding-bottom:30px; font-family:Anonymous Pro;">Registration</h1>
                     <div class="row g-3">
@@ -64,5 +70,4 @@
                 </form>
             </div>
         </div>
-    </div>
     </main>

@@ -1,8 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using DL.Entities;
+@using System.Security.Claims;
+@using BLL.Services
 @inject UserManager<AppUser> UserManager
 @inject SignInManager<AppUser> SignInManager
+@inject AppUserService appUserService
+@{
 
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,41 +22,67 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Inter:wght@400;700&family=Jura:wght@300;400;500&family=Montserrat&family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
+<body class="d-flex" style="height:100%">
+
+    <div class="navigation">
         <div class="heading">
-            <img class="menu-avatar" src="photos/Main-photo.png">
-            <div class="title">
-                <h1>Financy App</h1>
-            </div>
+            <img class="app-img" src="~/photos/app-image.png" style="width:50%"/>
         </div>
         <div class="list-menu">
 
             <ul class="navigation-list">
-                @if (SignInManager.IsSignedIn(User)) //пока не трогаю
+                @if (!SignInManager.IsSignedIn(User)) 
                 {
-                
-                <li>
-                    <img class="img-item" src="photos/log_in.png">
-                    <a asp-controller="Account" asp-action="Login" class="list-text">Log in</a>
-                </li>
-                <li>
-                    <img class="img-item" src="photos/registration-icon-1.png" />
-                    <a asp-controller="Account" asp-action="Register" class="list-text">Register</a>
-                </li>
-                <li>
-                    <img class="img-item" src="photos/info_icon-1.png" />
-                    <a class="list-text">About us</a>
-                </li>
-                }
-                else{
 
+                    <li>
+                        <img class="img-item" src="~/photos/log_in.png">
+                        <a asp-controller="Account" asp-action="Login" class="list-text">Log in</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/registration-icon-1.png" />
+                        <a asp-controller="Account" asp-action="Register" class="list-text">Register</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/info_icon-1.png" />
+                        <a class="list-text">About us</a>
+                    </li>
+                }
+                else
+                {
+                    var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+                    var user = appUserService.GetById(userId);
+
+                    <li style="display: flex; align-items: center;">
+                        <img class="img-item" src="~/photos/cash.png" />
+                        <p class="list-text" style="margin-left: 10px;">Balance: @user.Balance</p>
+                    </li>
+
+                    <li>
+                        <img class="img-item" src="~/photos/Account.png" />
+                        <a asp-action="Info" asp-controller="Account" class="list-text">Account</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/YourFinancy.png" />
+                        <a class="list-text">Financy statistics</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/CreateCosts.png" />
+                        <a class="list-text">Create costs</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/CreateCategory.png" />
+                        <a class="list-text">Create category</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/Log-out.png" />
+                        <a asp-action="LogOut" asp-controller="Account" class="list-text">Log out</a>
+                    </li>
                 }
             </ul>
         </div>
 
-    </header>
-    <main role="main" class="pb-3" style="margin-left:341px">
+    </div>
+    <main role="main">
         @RenderBody()
     </main>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -59,4 +90,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

@@ -1,8 +1,11 @@
-﻿using DL.Entities;
+﻿using BLL.Services;
+using DL.Entities;
 using FinancyApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Framework;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Security.Claims;
 
 namespace FinancyApp.Controllers;
 
@@ -11,12 +14,14 @@ public class AccountController : Controller
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly RoleManager<IdentityRole> _roleManager;
-
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
+    private readonly AppUserService _appUserService;
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
+        RoleManager<IdentityRole> roleManager, AppUserService appUserService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _roleManager = roleManager;
+        _appUserService = appUserService;
     }
 
     // public IActionResult Index()
@@ -98,5 +103,25 @@ public class AccountController : Controller
         TempData["Error"] = "Wrong credentials";
 
         return View(loginViewModel);
+    }
+
+    public async Task<IActionResult> LogOut()
+    {
+        await _signInManager.SignOutAsync();
+
+        return RedirectToAction("Index", "Home");
+    }
+
+    [HttpGet]
+    public IActionResult Info()
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        var appUserViewModel = new AppUserViewModel
+        {
+            UserId = userId
+        };
+
+        return View(appUserViewModel);
+        
     }
 }
