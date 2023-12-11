@@ -12,6 +12,8 @@ public interface IRepository<T> where T : class
     List<T> GetAllAsList();
     DbSet<T> GetAllAsTable();
     void Add(T item);
+    void Update(T item);
+    void Delete(int id);
     T? FindById(int id);
     T? FindById(string id);
     void SaveChanges();
