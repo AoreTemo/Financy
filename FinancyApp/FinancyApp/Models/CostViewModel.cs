@@ -15,7 +15,10 @@ public class CostViewModel
     [Required(ErrorMessage = "CostName is required")]
     [DataType(DataType.DateTime)]
     public DateTime CostDate{ get; set; }
+    
+    public string CategoryName { get; set; }
+    public int CategoryId { get; set; } 
 
-    public List<SelectListItem> Category { get; set; }
+    public List<SelectListItem>? Category { get; set; }
 
 }
