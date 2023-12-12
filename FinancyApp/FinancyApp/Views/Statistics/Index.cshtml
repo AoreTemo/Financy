@@ -16,11 +16,17 @@
         .OrderBy(e => e.Month)
         .ToList();
 }
+<link rel="stylesheet" href="~/css/Breadcrumbs.css" />
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <div class="container d-flex justify-content-center mt-10 mb-10">
     <h2>Your statistics</h2>
 </div>
-
+<div class=" container d-flex ">
+    <ul class="pagination shadow-lg">
+        <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+        <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Statistics</small></a></li>
+    </ul>
+</div>
 <hr />
 
 <div class="container d-flex w-100 mt-10">

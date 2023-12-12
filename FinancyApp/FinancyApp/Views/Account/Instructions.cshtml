@@ -1,0 +1,42 @@
+﻿
+@{
+}
+<link rel="stylesheet" href="~/css/Breadcrumbs.css" />
+<style>
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom:20px;
+    }
+
+        .video-container video {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+</style>
+
+<div class=" container d-flex ">
+    <ul class="pagination shadow-lg">
+        <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+        <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Instructions</small></a></li>
+    </ul>
+</div>
+
+<div class="video-container">
+    <h2>How to make category</h2>
+    <video width="320" height="240" controls>
+        <source src="~/video/how-to-make-instructioms.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="video-container">
+    <h2>How to make cost</h2>
+    <video width="320" height="240" controls>
+        <source src="~/video/how-to-make-cost.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>

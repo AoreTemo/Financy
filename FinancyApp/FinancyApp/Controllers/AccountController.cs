@@ -140,4 +140,10 @@ public class AccountController : Controller
         }
         return BadRequest("Balance cant be less 0");
     }
+
+    [HttpGet]
+    public IActionResult Instructions()
+    {
+        return View();
+    }
 }
