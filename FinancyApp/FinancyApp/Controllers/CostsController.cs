@@ -72,6 +72,11 @@ public class CostsController : Controller
     public IActionResult Delete(int id)
     {
         if (!ModelState.IsValid) return BadRequest("Aboba");
+        var cost = _costService.GetById(id);
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        var currentUser = _appUserService.GetById(userId);
+        currentUser.Balance += cost.Amount;
+        
         _costService.Delete(id);
             
         return RedirectToAction("Index");

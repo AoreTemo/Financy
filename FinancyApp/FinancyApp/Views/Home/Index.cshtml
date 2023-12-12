@@ -1,19 +1,21 @@
 ﻿@using BLL.Interfaces;
-@using BLL.Services;
-@using System.Security.Claims;
-@inject IAppUserService appUserService
-@inject ICategoryService categoryService
+
+@model HomeViewModel
+
 @inject ICostService costService
 
-@{
-    var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-    var user = appUserService.GetById(userId);
-    var categories = categoryService.GetByPredicate(c => c.Id == userId);
-}
 
+<form method="get" id="searching" asp-action="Index" asp-controller="Home"
+      class="d-flex justify-content-between">
+    <input type="hidden" name="Sort" id="sorting" />
+    <input asp-for="@Model.Search" type="text" id="search" class="form-control w-20" placeholder="Search categories...">
+    <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('asc')">Sort ascending</button>
+    <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('desc')">Sort descending</button>
+    <button class="form-control btn-success w-20" type="submit">Search</button>
+</form>
 
 <div class="row">
-    @foreach (var category in categories)
+    @foreach (var category in Model.Categories)
     {
         var costInCategory = costService.GetByPredicate(cost => cost.CategoryId == category.CategoryId).ToList();
         if (costInCategory.Count == 0)
@@ -28,18 +30,24 @@
                     <p class="card-text">
                         @foreach (var cost in costInCategory)
                         {
-                        <button class="btn btn-danger" style="float:right" type="button">Delete</button>
-                        <p>Description: @cost.CostsDescription Amount: @cost.Amount</p>
-                        <p>
-                            Date: @cost.CostsDate.ToString("dd/MM/yyyy")
-                        </p>
-                        <hr />
+                            <button class="btn btn-danger" style="float:right" type="button">Delete</button>
+                            <p>Description: @cost.CostsDescription Amount: @cost.Amount</p>
+                            <p>
+                                Date: @cost.CostsDate.ToString("dd/MM/yyyy")
+                            </p>
+                            <hr />
                         }
                     </p>
                 </div>
             </div>
         </div>
-
-        
     }
 </div>
+
+<script >
+    function Submitting(order)
+    {
+        document.getElementById('sorting').value = order;
+   document.getElementById('searching').submit();
+    }
+</script>
