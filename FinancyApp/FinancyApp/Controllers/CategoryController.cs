@@ -17,17 +17,33 @@ public class CategoryController : Controller
     }
     
     [HttpGet]
-    public IActionResult Info()
+    public IActionResult Info(CategoryViewModel model)
     {
+        var categories = _categoryService.GetByPredicate(
+            c => c.Id == User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
+        if (!string.IsNullOrEmpty(model.Search))
+        {
+            categories = categories.Where(c => c.CategoryName.Contains(model.Search)).ToList();
+        }
+
+        if (model.Sort)
+        {
+            categories.Sort((c1, c2) => c1.CategoryName.CompareTo(c2.CategoryName));
+        }
+        
         var categoryViewModel = new CategoryViewModel
         {
-            Categories = _categoryService.GetByPredicate(
-                c => c.Id == User.FindFirst(ClaimTypes.NameIdentifier)!.Value)
+            Search = model.Search,
+            Sort = model.Sort,
+            Categories = categories
         };
 
         return View(categoryViewModel);
     }
+    
 
+    
     [HttpPost]
     public IActionResult Add(CategoryViewModel category)
     {
