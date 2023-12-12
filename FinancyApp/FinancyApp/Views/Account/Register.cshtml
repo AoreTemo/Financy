@@ -1,0 +1,73 @@
+﻿@using FinancyApp.Models
+@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<link rel="stylesheet" href="~/css/RegisterPage.css" />
+<link rel="stylesheet" href="~/css/Breadcrumbs.css" />
+<main class="register-back">
+    <div class=" container d-flex ">
+        <ul class="pagination shadow-lg">
+            <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+            <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Register</small></a></li>
+        </ul>
+    </div>
+    <div class="Register-form">
+        <div class="Register-container">
+            @*<@*div class="row g-5">*@
+                <form method="post" asp-action="Register" enctype="multipart/form-data" class="form">
+                    <h1 id="myElement" class="form-title" style="padding-bottom:30px; font-family:Anonymous Pro;">Registration</h1>
+                    <div class="row g-3">
+                        <div class="group">
+                            <div class="col-12">
+                                @*<label asp-for="FirstName" class="form-label">First name</label>*@
+                                <input asp-for="UserName" type="text" class="form-control"
+                                       required>
+                                <span asp-validation-for="UserName" class="highlight"></span>
+                                <label class="register-lable">Write your username</label>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="col-12">
+                                @*<label asp-for="LastName" class="form-label">Last name</label>*@
+                                <input asp-for="Email" type="text" class="form-control"
+                                       required>
+                                <span asp-validation-for="Email" class="highlight"></span>
+                                <label class="register-lable">Write your email</label>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="col-12">
+                                @*<label asp-for="Age" class="form-label">Age</label>*@
+                                <input asp-for="Balance" type="number" step="1"
+                                       class="form-control" required>
+                                <span asp-validation-for="Balance" class="highlight"></span>
+                                <label class="register-lable">Write your flow balance</label>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="col-12">
+                                @*<label asp-for="Password" class="form-label">Password</label>*@
+                                <input asp-for="Password" type="password" class="form-control"
+                                       required>
+                                <span asp-validation-for="Password" class="highlight"></span>
+                                <label class="register-lable">Write an Password</label>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="col-12">
+                                @*<label asp-for="ConfirmPassword" class="form-label">Password confirm</label>*@
+                                <input asp-for="ConfirmPassword" type="password" class="form-control"
+                                       required>
+                                <span asp-validation-for="ConfirmPassword" class="highlight"></span>
+                                <label class="register-lable">Confirm password</label>
+                            </div>
+                        </div>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>

@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@using DL.Entities;
+@using System.Security.Claims;
+@using BLL.Services
+@inject UserManager<AppUser> UserManager
+@inject SignInManager<AppUser> SignInManager
+@inject AppUserService appUserService
+@{
+
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,43 +17,78 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FinancyApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Layout.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Inter:wght@400;700&family=Jura:wght@300;400;500&family=Montserrat&family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FinancyApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+<body class="d-flex" style="height:100%">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - FinancyApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <div class="navigation">
+        <div class="heading">
+            <img class="app-img" src="~/photos/app-image.png" style="width:50%"/>
         </div>
-    </footer>
+        <div class="list-menu">
+
+            <ul class="navigation-list">
+                @if (!SignInManager.IsSignedIn(User)) 
+                {
+
+                    <li>
+                        <img class="img-item" src="~/photos/log_in.png">
+                        <a asp-controller="Account" asp-action="Login" class="list-text">Log in</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/registration-icon-1.png" />
+                        <a asp-controller="Account" asp-action="Register" class="list-text">Register</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/info_icon-1.png" />
+                        <a class="list-text">About us</a>
+                    </li>
+                }
+                else
+                {
+                    var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+                    var user = appUserService.GetById(userId);
+
+                    <li style="display: flex; align-items: center;">
+                        <img class="img-item" src="~/photos/cash.png" />
+                        <p class="list-text" style="margin-left: 10px;">Balance: @user.Balance</p>
+                    </li>
+
+                    <li>
+                        <img class="img-item" src="~/photos/Account.png" />
+                        <a asp-action="Info" asp-controller="Account" class="list-text">Account</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/YourFinancy.png" />
+                        <a class="list-text">Financy statistics</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/CreateCosts.png" />
+                        <a asp-action="Index" asp-controller="Costs" class="list-text">Create costs</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/CreateCategory.png" />
+                        <a asp-action="Info" asp-controller="Category" class="list-text">Category</a>
+                    </li>
+                    <li>
+                        <img class="img-item" src="~/photos/Log-out.png" />
+                        <a asp-action="LogOut" asp-controller="Account" class="list-text">Log out</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>
+    <main role="main">
+        @RenderBody()
+    </main>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

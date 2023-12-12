@@ -1,0 +1,22 @@
+@model ViewCategoryCostsViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Category costs</h2>
+
+<div class="row row-cols-4 row-cols-sm-4 row-cols-md-4 g-4" style="padding-top:50px;">
+    @foreach (var cost in Model.Costs)
+    {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@cost.CostsDescription</h5>
+                <p class="card-text">@cost.Amount</p>
+                <span href="#" class="text-muted">@cost.CostsDate</span>
+            </div>
+        </div>
+    }
+</div>
+
