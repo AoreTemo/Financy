@@ -7,6 +7,7 @@ using Microsoft.Build.Framework;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Security.Claims;
+using BLL.Interfaces;
 
 namespace FinancyApp.Controllers;
 
@@ -15,9 +16,9 @@ public class AccountController : Controller
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly RoleManager<IdentityRole> _roleManager;
-    private readonly AppUserService _appUserService;
+    private readonly IAppUserService _appUserService;
     public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-        RoleManager<IdentityRole> roleManager, AppUserService appUserService)
+        RoleManager<IdentityRole> roleManager, IAppUserService appUserService)
     {
         _userManager = userManager;
         _signInManager = signInManager;

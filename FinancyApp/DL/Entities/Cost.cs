@@ -17,7 +17,7 @@ public class Cost
 
     [ForeignKey("AppUser")]
     public string Id { get; set; }
+    
     [ForeignKey("Category")]
     public int CategoryId { get; set; }
-
 }

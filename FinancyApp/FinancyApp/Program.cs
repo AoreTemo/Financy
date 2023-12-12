@@ -20,7 +20,7 @@ builder.Services.AddDbContext<AppDbContext>(
 );
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped<AppUserService>();
+builder.Services.AddScoped<IAppUserService, AppUserService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICostService, CostService>();
 
