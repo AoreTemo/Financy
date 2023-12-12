@@ -26,12 +26,16 @@
 
     <div class="navigation">
         <div class="heading">
-            <img class="app-img" src="~/photos/app-image.png" style="width:50%"/>
+            <img class="app-img" src="~/photos/app-image.png" style="width:50%" />
         </div>
         <div class="list-menu">
 
             <ul class="navigation-list">
-                @if (!SignInManager.IsSignedIn(User)) 
+                <li>
+                    <img class="img-item" src="~/photos/home.png" style="height: 35px; width:35px">
+                    <a asp-controller="Home" asp-action="Index" class="list-text">Home</a>
+                </li>
+                @if (!SignInManager.IsSignedIn(User))
                 {
 
                     <li>

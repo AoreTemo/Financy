@@ -8,55 +8,67 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+
     <style>
         #popup_for_editing {
-           position: fixed;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           z-index: 9999;
-           background: rgba(0,0,0,0.5);
-           display: flex;
-           justify-content: center;
-           align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        
+
         #edit-form {
-           background: white;
-           padding: 20px;
-           border-radius: 10px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
         }
+
+        label, p,button,a,h2,h5{
+            font-family: Jura;
+        }
+
     </style>
+    <link rel="stylesheet" href="~/css/Breadcrumbs.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Inter:wght@400;700&family=Jura:wght@300;400;500&family=Montserrat&family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 </head>
-<div class="container mt-2">
-    <div class="list-group m-0">
-        <div class="card-header ml-5">
-            <p class="h1">Categories</p>
-            <form method="post" asp-action="Add" asp-controller="Category">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="w-25 d-flex flex-column">
-                        <label>Write category name</label>
-                        <input asp-for="CategoryName" class="form-control" type="text" required>
-                    </div>
-                    
-                    <div class="w-25 d-flex flex-column">
-                        <label>Choose a color</label>
-                        <input type="color" asp-for="CategoryColor" value="#0000ff">
-                    </div>
-                    
-                    <div class="w-25">
-                        <button class="btn btn-primary btn-lg" type="submit">Add</button>
-                    </div>
+<div class="list-group m-0">
+    <div class="card-header ml-5">
+        <p class="h1">Create a new category</p>
+        <form method="post" asp-action="Add" asp-controller="Category">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="w-25 d-flex flex-column">
+                    <label>Write category name</label>
+                    <input asp-for="CategoryName" class="form-control" type="text" required>
                 </div>
-            </form>
-            
+
+                <div class="w-25 d-flex flex-column">
+                    <label>Choose a color</label>
+                    <input type="color" asp-for="CategoryColor" value="#0000ff">
+                </div>
+
+                <div class="w-25" style="padding:50px;">
+                    <button class="btn btn-primary btn-lg" style="width:200px" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+        <div class=" container d-flex ">
+            <ul class="pagination shadow-lg">
+                <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+                <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Category </small></a></li>
+            </ul>
         </div>
         @foreach (var category in Model.Categories)
         {
-            <div class="list-group-item list-group-item-action card-link m-0 d-flex justify-content-between" 
-            style="background-color: @category.CategoryColor">
+            <div class="list-group-item list-group-item-action card-link m-0 d-flex justify-content-between"
+             style="background-color: @category.CategoryColor">
                 <div class="d-flex flex-column  w-75 h-100  card-text-column px-5">
                     <div class="d-flex h-100 align-items-center justify-content-between">
                         <h5 class="mb-1">Description: @category.CategoryName</h5>
@@ -64,19 +76,19 @@
                 </div>
                 <div class="d-flex flex-column justify-content-around card-action-column border-start-2 bg-light w-25 h-100">
                     <a type="button" class="btn btn-sm btn-outline-info"
-                        asp-controller="Category" asp-action="ViewCategoryCosts"
-                        asp-route-id="@category.CategoryId">
+                   asp-controller="Category" asp-action="ViewCategoryCosts"
+                   asp-route-id="@category.CategoryId">
                         View
                     </a>
                     <a type="button" class="btn btn-sm btn-outline-info edit-button"
-                       data-id="@category.CategoryId"
-                       data-name="@category.CategoryName"
-                       data-color="@category.CategoryColor">
+                   data-id="@category.CategoryId"
+                   data-name="@category.CategoryName"
+                   data-color="@category.CategoryColor">
                         Edit
                     </a>
                     <a type="button" class="btn btn-sm btn-outline-danger"
-                       asp-controller="Category" asp-action="Delete"
-                       asp-route-id="@category.CategoryId">
+                   asp-controller="Category" asp-action="Delete"
+                   asp-route-id="@category.CategoryId">
                         Delete
                     </a>
                 </div>
@@ -87,49 +99,49 @@
 
 
 <div class="card w-40" id="popup_for_editing" style="display: none">
-    <form method="post" asp-action="Edit" asp-controller="Category" 
-          enctype="multipart/form-data" class="form w-100" id="edit-form">
-    
+    <form method="post" asp-action="Edit" asp-controller="Category"
+          enctype="multipart/form-data" class="form w-20" id="edit-form">
+
         <div class="d-flex justify-content-between">
-           <h2>Edit category</h2>
-           <a href="#" id="close_button">x</a>
-        </div>
-            
-    <input type="hidden" name="id" value="" id="edit-id"/>
-    <div class="d-flex justify-content-around">
-        <div class="group w-30 mb-5">
-            <label>Name:</label>
-            <input asp-for="CategoryName" name="categoryName" class="form-control" type="text"
-                   required id="edit-name" />
+            <h2>Edit category</h2>
+            <a href="#" id="close_button">x</a>
         </div>
 
-        <div class="group w-30 mb-5">
-            <label>Color:</label>
-            <input asp-for="CategoryColor" name="categoryColor" class="form-control" type="color"
-                   value="#0000ff" id="edit-color">
+        <input type="hidden" name="id" value="" id="edit-id" />
+        <div class="d-flex justify-content-around">
+            <div class="group w-30 mb-5">
+                <label>Name:</label>
+                <input asp-for="CategoryName" name="categoryName" class="form-control" type="text"
+                       required id="edit-name" />
+            </div>
+
+            <div class="group w-30 mb-5" style="padding-left:5px">
+                <label>Color:</label>
+                <input asp-for="CategoryColor" name="categoryColor" class="form-control" type="color"
+                       value="#0000ff" id="edit-color">
+            </div>
         </div>
-    </div>
-    
-    <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
-</form>
+
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Save</button>
+    </form>
 </div>
 
-<script >
+<script>
     jQuery.noConflict();
-    jQuery(".edit-button").click(function() {
+    jQuery(".edit-button").click(function () {
         var id = jQuery(this).data('id');
         var name = jQuery(this).data('name');
         var color = jQuery(this).data('color');
-    
+
         jQuery("#edit-id").val(id);
         jQuery("#edit-name").val(name);
         jQuery("#edit-color").val(color);
-    
+
         jQuery("#popup_for_editing").show();
     });
-    
-    jQuery("#close_button").click(function(e) {
-       e.preventDefault(); // Предотвращает переход по ссылке
-       jQuery("#popup_for_editing").hide();
+
+    jQuery("#close_button").click(function (e) {
+        e.preventDefault(); // Предотвращает переход по ссылке
+        jQuery("#popup_for_editing").hide();
     });
 </script>

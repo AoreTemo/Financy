@@ -13,7 +13,7 @@ public class CostsController : Controller
 {
     private readonly ICostService _costService;
     private readonly ICategoryService _categoryService;
-    public CostsController(CostService costService, ICategoryService categoryService)
+    public CostsController(ICostService costService, ICategoryService categoryService)
     {
         _costService = costService;
         _categoryService = categoryService;

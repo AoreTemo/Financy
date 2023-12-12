@@ -5,16 +5,40 @@
     Layout = "_Layout";
 }
 
-<h2>Category costs</h2>
+<style>
+    .costs-container {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding-top: 50px;
+    }
+</style>
+<link rel="stylesheet" href="~/css/Breadcrumbs.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Inter:wght@400;700&family=Jura:wght@300;400;500&family=Montserrat&family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 
-<div class="row row-cols-4 row-cols-sm-4 row-cols-md-4 g-4" style="padding-top:50px;">
+<div class="header">
+    <h1 style="margin-left:20px; font-family: Jura; ">Costs in this category</h1>
+</div>
+
+<div class=" container d-flex ">
+    <ul class="pagination shadow-lg">
+        <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
+        <li class="page-item "><a class="page-link" asp-action="Info" asp-controller="Category"><i class="fa fa-home "></i> <small>Category</small>  </a></li>
+        <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Costs view</small></a></li>
+    </ul>
+</div>
+
+<div class="costs-container" style="padding-top:50px;">
     @foreach (var cost in Model.Costs)
     {
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 12rem;">
             <div class="card-body">
-                <h5 class="card-title">@cost.CostsDescription</h5>
-                <p class="card-text">@cost.Amount</p>
-                <span href="#" class="text-muted">@cost.CostsDate</span>
+                <h5 class="card-title">Description: @cost.CostsDescription</h5>
+                <p class="card-text">Amount: @cost.Amount</p>
+                <span href="#" class="text-muted">Date: @cost.CostsDate</span>
             </div>
         </div>
     }

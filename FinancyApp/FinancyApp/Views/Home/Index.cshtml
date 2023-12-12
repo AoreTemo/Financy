@@ -1,8 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using BLL.Interfaces;
+@using BLL.Services;
+@using System.Security.Claims;
+@inject AppUserService appUserService
+@inject ICategoryService categoryService
+@inject ICostService costService
+
+@{
+    var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+    var user = appUserService.GetById(userId);
+    var categories = categoryService.GetByPredicate(c => c.Id == userId);
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+<div class="row">
+    @foreach (var category in categories)
+    {
+        var costInCategory = costService.GetByPredicate(cost => cost.CategoryId == category.CategoryId).ToList();
+        if (costInCategory.Count == 0)
+            continue;
+
+        <div class="col-md-4">
+            <div class="card" style="width:auto; margin:20px 20px">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title">@category.CategoryName</h5>
+                    </div>
+                    <p class="card-text">
+                        @foreach (var cost in costInCategory)
+                        {
+                        <button class="btn btn-danger" style="float:right" type="button">Delete</button>
+                        <p>Description: @cost.CostsDescription Amount: @cost.Amount</p>
+                        <p>
+                            Date: @cost.CostsDate.ToString("dd/MM/yyyy")
+                        </p>
+
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+    }
 </div>
