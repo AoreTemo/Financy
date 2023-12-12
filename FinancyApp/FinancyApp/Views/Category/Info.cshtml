@@ -39,6 +39,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Inter:wght@400;700&family=Jura:wght@300;400;500&family=Montserrat&family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 </head>
+<<<<<<< Updated upstream
 <div class="list-group m-0">
     <div class="card-header ml-5">
         <p class="h1">Create a new category</p>
@@ -47,6 +48,36 @@
                 <div class="w-25 d-flex flex-column">
                     <label>Write category name</label>
                     <input asp-for="CategoryName" class="form-control" type="text" required>
+=======
+<div class="container mt-2">
+    <div class="list-group m-0">
+        <div class="card-header ml-5">
+            <p class="h1">Categories</p>
+            
+            <form method="get" id="searching" asp-action="Info" asp-controller="Category"
+                  class="d-flex justify-content-between">
+                <input type="hidden" name="Sort" id="sorting" />
+                <input asp-for="@Model.Search" type="text" id="search" class="form-control w-20" placeholder="Search categories...">
+                <button class="form-control btn-primary w-20" id="sort" onclick="Submitting()">Sort categories</button>
+                <button class="form-control btn-success w-20" type="submit">Search</button>
+            </form>
+
+            <form method="post" asp-action="Add" asp-controller="Category">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="w-25 d-flex flex-column">
+                        <label>Write category name</label>
+                        <input asp-for="CategoryName" class="form-control" type="text" required>
+                    </div>
+                    
+                    <div class="w-25 d-flex flex-column">
+                        <label>Choose a color</label>
+                        <input type="color" asp-for="CategoryColor" value="#0000ff">
+                    </div>
+                    
+                    <div class="w-25">
+                        <button class="btn btn-primary btn-lg" type="submit">Add</button>
+                    </div>
+>>>>>>> Stashed changes
                 </div>
 
                 <div class="w-25 d-flex flex-column">
@@ -144,4 +175,11 @@
         e.preventDefault(); // Предотвращает переход по ссылке
         jQuery("#popup_for_editing").hide();
     });
+    
+    
+    function Submitting()
+    {
+        document.getElementById('sorting').value = true;
+   document.getElementById('searching').submit();
+    }
 </script>
