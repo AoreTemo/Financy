@@ -18,7 +18,7 @@ public class Category
     public string CategoryColor { get; set; }
 
     [ForeignKey("AppUser")]
-    public string Id { get; set; }
+    public string Id { get; set; } 
     
     public List<Cost>? Costs { get; set; }
 

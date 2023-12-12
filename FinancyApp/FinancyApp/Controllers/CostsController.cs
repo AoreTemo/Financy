@@ -10,9 +10,9 @@ namespace FinancyApp.Controllers;
 
 public class CostsController : Controller
 {
-    private readonly CostService _costService;
+    private readonly ICostService _costService;
 
-    public CostsController(CostService costService)
+    public CostsController(ICostService costService)
     {
         _costService = costService;
     }

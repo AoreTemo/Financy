@@ -9,10 +9,11 @@ namespace FinancyApp.Controllers;
 public class CategoryController : Controller
 {
     private readonly ICategoryService _categoryService;
-    private readonly IGenericService<Cost> _costsService;
-    public CategoryController(ICategoryService categoryService)
+    private readonly ICostService _costsService;
+    public CategoryController(ICategoryService categoryService,ICostService costsService)
     {
         _categoryService = categoryService;
+        _costsService = costsService;
     }
     
     [HttpGet]
@@ -28,7 +29,7 @@ public class CategoryController : Controller
     }
 
     [HttpPost]
-    public IActionResult Add(Category category)
+    public IActionResult Add(CategoryViewModel category)
     {
         var newCategory = new Category
         {
@@ -39,7 +40,7 @@ public class CategoryController : Controller
         
         _categoryService.Add(newCategory);
         
-        return RedirectToAction("Index", "Costs");
+        return RedirectToAction("Info");
     }
     
     [HttpPost]
@@ -59,7 +60,7 @@ public class CategoryController : Controller
         return RedirectToAction("Info");
     }
     
-    [HttpPost]
+    [HttpGet]
     public IActionResult Delete(int id)
     {
         _categoryService.Delete(id);

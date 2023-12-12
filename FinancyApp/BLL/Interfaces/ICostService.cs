@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces;
 
-public interface ICostService:IGenericService<Cost>
+public interface ICostService : IGenericService<Cost>
 {
 
 }

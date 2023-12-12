@@ -10,7 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49895484-fbcc-4e81-92bc-da1ad383679a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FinancyApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinancyApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BLL/Interfaces/ICostService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BLL/Interfaces/ICostService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DL/Entities/Category.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DL/Entities/Category.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/CategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Controllers/CategoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/CostsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Controllers/CostsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinancyApp/Views/Category/Info.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Views/Category/Info.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Views/Shared/_Layout.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +49,8 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "HotReloadSettingsPage",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -55,7 +64,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.FinancyApp: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.FinancyApp: https">
     <configuration name="FinancyApp: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/FinancyApp/FinancyApp.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
@@ -111,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702204582199</updated>
       <workItem from="1702204804832" duration="7618000" />
-      <workItem from="1702326916463" duration="5601000" />
+      <workItem from="1702326916463" duration="12135000" />
     </task>
     <servers />
   </component>
