@@ -1,53 +1,78 @@
 ﻿@using BLL.Interfaces;
+@using DL.Entities
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 
 @model HomeViewModel
 
 @inject ICostService costService
+@inject SignInManager<AppUser> SignInManager
 
+@if (SignInManager.IsSignedIn(User))
+{
+    <form method="get" id="searching" asp-action="Index" asp-controller="Home"
+          class="d-flex justify-content-between">
+        <input type="hidden" name="Sort" id="sorting" />
+        <input asp-for="@Model.Search" type="text" id="search" class="form-control w-20" placeholder="Search categories...">
+               <button class="form-control btn-success w-20" type="submit">Search</button>
+        <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('asc')">Sort ascending</button>
+        <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('desc')">Sort descending</button>
 
-<form method="get" id="searching" asp-action="Index" asp-controller="Home"
-      class="d-flex justify-content-between">
-    <input type="hidden" name="Sort" id="sorting" />
-    <input asp-for="@Model.Search" type="text" id="search" class="form-control w-20" placeholder="Search categories...">
-    <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('asc')">Sort ascending</button>
-    <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('desc')">Sort descending</button>
-    <button class="form-control btn-success w-20" type="submit">Search</button>
-</form>
-
-<div class="row">
-    @foreach (var category in Model.Categories)
-    {
-        var costInCategory = costService.GetByPredicate(cost => cost.CategoryId == category.CategoryId).ToList();
-        if (costInCategory.Count == 0)
-            continue;
-
-        <div class="col-md-4">
-            <div class="card" style="width:auto; margin:20px 20px">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title">@category.CategoryName</h5>
+    </form>
+    
+    <div class="row">
+        @foreach (var category in Model.Categories)
+        {
+            var costInCategory = costService.GetByPredicate(cost => cost.CategoryId == category.CategoryId).ToList();
+            if (costInCategory.Count == 0)
+                continue;
+    
+            <div class="col-md-4">
+                <div class="card" style="width:auto; margin:20px 20px">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">@category.CategoryName</h5>
+                        </div>
+                        <p class="card-text">
+                            @foreach (var cost in costInCategory)
+                            {
+                                <a asp-action="Delete" asp-controller="Costs" asp-route-id="@cost.CostsId" class="btn btn-danger" 
+                                   style="float:right" type="button">Delete</a>
+                                <p>Description: @cost.CostsDescription Amount: @cost.Amount</p>
+                                <p>
+                                    Date: @cost.CostsDate.ToString("dd/MM/yyyy")
+                                </p>
+                                <hr />
+                            }
+                        </p>
                     </div>
-                    <p class="card-text">
-                        @foreach (var cost in costInCategory)
-                        {
-                            <button class="btn btn-danger" style="float:right" type="button">Delete</button>
-                            <p>Description: @cost.CostsDescription Amount: @cost.Amount</p>
-                            <p>
-                                Date: @cost.CostsDate.ToString("dd/MM/yyyy")
-                            </p>
-                            <hr />
-                        }
-                    </p>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+    
+    <script >
+        function Submitting(order)
+        {
+            document.getElementById('sorting').value = order;
+       document.getElementById('searching').submit();
+        }
+    </script>
+}
+else
+{
+    <div class="w-100 container d-flex flex-column align-items-center justify-content-center">
 
-<script >
-    function Submitting(order)
-    {
-        document.getElementById('sorting').value = order;
-   document.getElementById('searching').submit();
-    }
-</script>
+        <h1>Register in 3 clicks</h1>
+        <h2><a asp-controller="Account" class="btn-success" asp-action="Register">Here</a></h2>
+        <hr/>
+        <span>If you already have an account</span>
+        <span>
+            <a asp-controller="Account" class="btn-primary" asp-action="Login">
+                Log in here
+            </a>
+        </span>
+    </div>
+
+
+}

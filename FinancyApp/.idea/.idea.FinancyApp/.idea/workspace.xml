@@ -11,12 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="49895484-fbcc-4e81-92bc-da1ad383679a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FinancyApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinancyApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/CategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Controllers/CategoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/CostsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Controllers/CostsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/HomeController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinancyApp/Models/CategoryViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Models/CategoryViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Controllers/AccountController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Controllers/HomeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinancyApp/Views/Category/Info.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Views/Category/Info.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinancyApp/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Views/Home/Index.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Views/Shared/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Views/Shared/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinancyApp/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,6 +120,7 @@
       <updated>1702204582199</updated>
       <workItem from="1702204804832" duration="7618000" />
       <workItem from="1702326916463" duration="24087000" />
+      <workItem from="1702361842978" duration="2016000" />
     </task>
     <servers />
   </component>

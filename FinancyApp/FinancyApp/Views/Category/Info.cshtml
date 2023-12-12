@@ -48,9 +48,10 @@
                   class="d-flex justify-content-between">
                 <input type="hidden" name="Sort" id="sorting" />
                 <input asp-for="@Model.Search" type="text" id="search" class="form-control w-20" placeholder="Search categories...">
+                <button class="form-control btn-success w-20" type="submit">Search</button>
                 <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('asc')">Sort ascending</button>
                 <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('desc')">Sort descending</button>
-                <button class="form-control btn-success w-20" type="submit">Search</button>
+
             </form>
 
             <form method="post" asp-action="Add" asp-controller="Category">

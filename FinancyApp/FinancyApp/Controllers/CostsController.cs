@@ -79,6 +79,6 @@ public class CostsController : Controller
         
         _costService.Delete(id);
             
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home");
     }
 }

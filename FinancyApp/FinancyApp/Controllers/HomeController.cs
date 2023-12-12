@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using BLL.Interfaces;
+using DL.Entities;
 using FinancyApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,9 +23,14 @@ public class HomeController : Controller
     // GET
     public IActionResult Index(HomeViewModel model)
     {
-        var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-        var user = _appUserService.GetById(userId);
-        var categories = _categoryService.GetByPredicate(c => c.Id == userId);
+        string? userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        List<Category> categories = new List<Category>();
+        if (userId != null)
+        {
+            var user = _appUserService.GetById(userId);
+            categories = _categoryService.GetByPredicate(c => c.Id == userId);
+        }
+
         
 
         if (!string.IsNullOrEmpty(model.Search))

@@ -136,7 +136,7 @@ public class AccountController : Controller
         {
             user.Balance = NewBalance;
             _appUserService.Update(user);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Info");
         }
         return BadRequest("Balance cant be less 0");
     }
