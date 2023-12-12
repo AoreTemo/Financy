@@ -13,10 +13,12 @@ public class CostsController : Controller
 {
     private readonly ICostService _costService;
     private readonly ICategoryService _categoryService;
-    public CostsController(ICostService costService, ICategoryService categoryService)
+    public CostsController(ICostService costService, ICategoryService categoryService, 
+        IAppUserService appUserService)
     {
         _costService = costService;
         _categoryService = categoryService;
+        _appUserService = appUserService;
     }
 
     [HttpGet]
@@ -26,7 +28,7 @@ public class CostsController : Controller
         var categories = _categoryService.GetByPredicate(category => category.Id == userId).ToList();
         costViewModel.Category = categories.Select(categories => new SelectListItem
         {
-            Value = categories.CategoryName,
+            Value = categories.CategoryId.ToString(),
             Text = categories.CategoryName
         }).ToList();
 
@@ -39,18 +41,22 @@ public class CostsController : Controller
     {
 
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-        var categoryId = 1;
-
+        var currentUser = _appUserService.GetById(userId);
         var newCost = new Cost
         {
             CostsDescription = costViewModel.CostDescription,
             CostsDate = costViewModel.CostDate,
             Id = userId,
             Amount = costViewModel.Amount,
-            CategoryId = categoryId,
+            CategoryId = costViewModel.CategoryId,
         };
          _costService.Add(newCost);
-
+         currentUser.Balance -= newCost.Amount;
+         if (currentUser.Balance < 0)
+         {
+             currentUser.Balance = 0;
+         }
+         _appUserService.Update(currentUser);
         return RedirectToAction("Index","Home");
     }
     
