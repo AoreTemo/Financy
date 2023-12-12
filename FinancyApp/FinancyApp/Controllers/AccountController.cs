@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Framework;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Security.Claims;
 
 namespace FinancyApp.Controllers;
@@ -38,7 +39,7 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
     {
-        if(!ModelState.IsValid)
+        if (!ModelState.IsValid)
             return View(registerViewModel);
 
         var user = await _userManager.FindByEmailAsync(registerViewModel.Email);
@@ -61,7 +62,7 @@ public class AccountController : Controller
 
         };
 
-         await _userManager.CreateAsync(newUser, registerViewModel.Password);
+        await _userManager.CreateAsync(newUser, registerViewModel.Password);
 
         return RedirectToAction("Index", "Home");
 
@@ -78,7 +79,7 @@ public class AccountController : Controller
     {
         if (!ModelState.IsValid)
             return View(loginViewModel);
-        
+
 
         var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
 
@@ -122,6 +123,20 @@ public class AccountController : Controller
         };
 
         return View(appUserViewModel);
-        
+
+    }
+
+    [HttpPost]
+    public IActionResult EditBalance(int NewBalance)
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        var user = _appUserService.GetByPredicate(user => user.Id == userId).FirstOrDefault();
+        if (user != null && NewBalance >= 0)
+        {
+            user.Balance = NewBalance;
+            _appUserService.Update(user);
+            return RedirectToAction("Index", "Home");
+        }
+        return BadRequest("Balance cant be less 0");
     }
 }

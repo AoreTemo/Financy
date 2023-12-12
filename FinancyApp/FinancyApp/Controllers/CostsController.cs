@@ -3,6 +3,7 @@ using BLL.Services;
 using DL.Entities;
 using FinancyApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Identity.Client;
 using System.Security.Claims;
 
@@ -11,17 +12,26 @@ namespace FinancyApp.Controllers;
 public class CostsController : Controller
 {
     private readonly CostService _costService;
-
-    public CostsController(CostService costService)
+    private readonly ICategoryService _categoryService;
+    public CostsController(CostService costService, ICategoryService categoryService)
     {
         _costService = costService;
+        _categoryService = categoryService;
     }
 
     [HttpGet]
     public IActionResult Index(CostViewModel costViewModel)
     {
-        //var categories = 
-        return View();
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+        var categories = _categoryService.GetByPredicate(category => category.Id == userId).ToList();
+        costViewModel.Category = categories.Select(categories => new SelectListItem
+        {
+            Value = categories.CategoryName,
+            Text = categories.CategoryName
+        }).ToList();
+
+
+        return View(costViewModel);
     }
 
     [HttpPost]

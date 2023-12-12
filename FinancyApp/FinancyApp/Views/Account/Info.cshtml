@@ -6,12 +6,90 @@
     var user = appUserService.GetById(Model.UserId);
 }
 <link rel="stylesheet" href="~/css/Breadcrumbs.css" />
+<link rel="stylesheet" href="~/css/profilePage.css" />
+<link rel="stylesheet" href="~/css/account.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Inter:wght@400;700&family=Nunito:wght@200;400&display=swap" rel="stylesheet">
+
 <header class="header">
     <h1 class="header-text">Account</h1>
 </header>
+
 <div class=" container d-flex ">
     <ul class="pagination shadow-lg">
         <li class="page-item "><a class="page-link" asp-action="Index" asp-controller="Home"><i class="fa fa-home "></i> <small>Home</small>  </a></li>
-        <li class="page-item active"><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Account</small></a></li>
+        <li class="page-item active "><a class="page-link " href="#"><i class="fa fa-file  mr-1  ml-0"></i><small>Account</small></a></li>
     </ul>
 </div>
+
+<div class="d-flex justify-content-center align-items-center" style="width: 100%">
+    <div class="card bg-secondary text-white" style="width: 70%;">
+        <div class="row no-gutters">
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <label for="profile-image-upload" class="custom-file-upload">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" class="card-img" alt="Profile Image">
+                </label>
+                <input id="profile-image-upload" type="file" style="display: none; cursor: pointer">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" style="height:500px">
+                    <h3 class="card-title" style="padding-bottom: 30px">@user.UserName</h3>
+                    <p class="card-text">UserName: @user.UserName</p>
+                    <p class="card-text">Email: @user.Email</p>
+                    <p class="card-text">Balance: @user.Balance</p>
+                    <div style="display: flex; justify-content: space-evenly; margin-top: 30px">
+                        <button id="review-modal-btn" class="button-6" role="button">Change balance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="review-myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Change a balance</h3>
+            <span class="review-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form asp-action="EditBalance" asp-controller="Account">
+                    <div class="form-group">
+                        <label for="balance" style="padding:10px">New Balance</label>
+                    <input name="newBalance" type="number" class="form-control" id="balance" min="0" required>
+                    </div>
+                    <button type="submit" style="margin-top:20px" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        </div>
+
+<script>
+
+    var modal = document.getElementById('myModal');
+    var reviewModal = document.getElementById('review-myModal');
+
+
+    var Reviewbtn = document.getElementById("review-modal-btn");
+
+
+    var span = document.getElementsByClassName("review-close")[0];
+
+
+    Reviewbtn.onclick = function () {
+        reviewModal.style.display = "block";
+    }
+
+
+    span.onclick = function () {
+        reviewModal.style.display = "none";
+    }
+
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            reviewModal.style.display = "none";
+        }
+    }
+</script>
