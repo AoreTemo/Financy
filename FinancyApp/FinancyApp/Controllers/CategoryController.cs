@@ -27,9 +27,16 @@ public class CategoryController : Controller
             categories = categories.Where(c => c.CategoryName.Contains(model.Search)).ToList();
         }
 
-        if (model.Sort)
+        if (!string.IsNullOrEmpty(model.Sort))
         {
-            categories.Sort((c1, c2) => c1.CategoryName.CompareTo(c2.CategoryName));
+            if (model.Sort == "asc")
+            {
+                categories.Sort((c1, c2) => c1.CategoryName.CompareTo(c2.CategoryName));
+            }
+            else
+            {
+                categories.Sort((c1, c2) => c2.CategoryName.CompareTo(c1.CategoryName));
+            }
         }
         
         var categoryViewModel = new CategoryViewModel

@@ -7,7 +7,7 @@ public class CategoryViewModel
     public string? CategoryName { get; set; }
     public string? CategoryColor { get; set; }
     public string? Search { get; set; }
-    public bool Sort { get; set; } = false;
+    public string Sort { get; set; }
     
     public List<Category>? Categories { get; set; }
 }

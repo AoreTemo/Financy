@@ -44,12 +44,12 @@
     <div class="list-group m-0">
         <div class="card-header ml-5">
             <p class="h1">Categories</p>
-            
             <form method="get" id="searching" asp-action="Info" asp-controller="Category"
                   class="d-flex justify-content-between">
                 <input type="hidden" name="Sort" id="sorting" />
                 <input asp-for="@Model.Search" type="text" id="search" class="form-control w-20" placeholder="Search categories...">
-                <button class="form-control btn-primary w-20" id="sort" onclick="Submitting()">Sort categories</button>
+                <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('asc')">Sort ascending</button>
+                <button class="form-control btn-primary w-20" id="sort" onclick="Submitting('desc')">Sort descending</button>
                 <button class="form-control btn-success w-20" type="submit">Search</button>
             </form>
 
@@ -167,9 +167,9 @@
     });
     
     
-    function Submitting()
+    function Submitting(order)
     {
-        document.getElementById('sorting').value = true;
+        document.getElementById('sorting').value = order;
    document.getElementById('searching').submit();
     }
 </script>
