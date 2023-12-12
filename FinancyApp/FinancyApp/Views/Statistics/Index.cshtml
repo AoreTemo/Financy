@@ -1,0 +1,68 @@
+@model StatsViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+    
+    var expensesByCategory = Model.Costs
+        .GroupBy(c => c.CategoryId)
+        .Select(g => new { CategoryId = g.Key, TotalExpense = g.Sum(c => c.Amount) })
+        .ToList();
+    
+    var expensesByMonth = Model.Costs
+        .Where(c => c.CostsDate >= DateTime.Now.AddYears(-1))
+        .GroupBy(c => new { Year = c.CostsDate.Year, Month = c.CostsDate.Month })
+        .Select(g => new { Month = g.Key.Month, TotalExpense = g.Sum(c => c.Amount) })
+        .OrderBy(e => e.Month)
+        .ToList();
+}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div class="container d-flex justify-content-center mt-10 mb-10">
+    <h2>Your statistics</h2>
+</div>
+
+<hr />
+
+<div class="container d-flex w-100 mt-10">
+    <div class="card w-50">
+        <div id="expensesByCategory"></div>
+    </div>
+    
+    <div class="card w-50">
+        <div id="expensesByMonth"></div>
+    </div>
+</div>
+
+
+<script >
+   let dataExpensesByCategory = [{
+      values: @Html.Raw(Json.Serialize(expensesByCategory.Select(e => e.TotalExpense))),
+      labels: @Html.Raw(Json.Serialize(expensesByCategory.Select(e => Model.Categories.First(c => c.CategoryId == e.CategoryId).CategoryName))),
+      type: 'pie'
+   }];
+               
+    let layoutExpensesByCategory = {
+       title: 'Genres by number of expenses'
+    };
+    
+   Plotly.newPlot('expensesByCategory', dataExpensesByCategory, layoutExpensesByCategory);
+   
+   let dataExpensesByMonth = [{
+      x: @Html.Raw(Json.Serialize(expensesByMonth.Select(e => e.Month))),
+      y: @Html.Raw(Json.Serialize(expensesByMonth.Select(e => e.TotalExpense))),
+      mode: 'lines+markers',
+      type: 'scatter'
+   }];
+   
+   let layoutExpensesByMonth = {
+      title: 'Number of expenses by month',
+        xaxis: {
+            title: 'Monthes'
+        },
+        yaxis: {
+            title: 'Costs'
+        }
+   };
+   
+   Plotly.newPlot('expensesByMonth', dataExpensesByMonth, layoutExpensesByCategory);
+</script>
