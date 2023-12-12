@@ -1,7 +1,7 @@
 ﻿@using BLL.Interfaces;
 @using BLL.Services;
 @using System.Security.Claims;
-@inject AppUserService appUserService
+@inject IAppUserService appUserService
 @inject ICategoryService categoryService
 @inject ICostService costService
 
@@ -33,13 +33,13 @@
                         <p>
                             Date: @cost.CostsDate.ToString("dd/MM/yyyy")
                         </p>
-
+                        <hr />
                         }
                     </p>
                 </div>
             </div>
         </div>
 
-
+        
     }
 </div>

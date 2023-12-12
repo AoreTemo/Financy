@@ -13,6 +13,7 @@ public class CostsController : Controller
 {
     private readonly ICostService _costService;
     private readonly ICategoryService _categoryService;
+    private readonly IAppUserService _appUserService;
     public CostsController(ICostService costService, ICategoryService categoryService, 
         IAppUserService appUserService)
     {

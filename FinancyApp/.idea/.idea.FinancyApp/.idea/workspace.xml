@@ -11,9 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="49895484-fbcc-4e81-92bc-da1ad383679a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FinancyApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinancyApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/CategoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Controllers/CategoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinancyApp/Models/CategoryViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Models/CategoryViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Controllers/CostsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Controllers/CostsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Views/Account/Info.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Views/Account/Info.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinancyApp/Views/Category/Info.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Views/Category/Info.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinancyApp/Views/Home/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/FinancyApp/Views/Home/Index.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,31 +36,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "develop",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "HotReloadSettingsPage",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;HotReloadSettingsPage&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver&quot;
     ],
-    "rider.external.source.directories": [
-      "C:\\Users\\densh\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\densh\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\densh\\AppData\\Local\\Symbols\\src"
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\densh\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\densh\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\densh\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.FinancyApp: https">
     <configuration name="FinancyApp: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/FinancyApp/FinancyApp.csproj" />
@@ -116,7 +117,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702204582199</updated>
       <workItem from="1702204804832" duration="7618000" />
-      <workItem from="1702326916463" duration="20859000" />
+      <workItem from="1702326916463" duration="21491000" />
     </task>
     <servers />
   </component>
