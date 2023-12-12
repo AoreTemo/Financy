@@ -1,7 +1,8 @@
-﻿@using BLL.Services
+﻿@using BLL.Interfaces;
+@using BLL.Services
 @using FinancyApp.Models;
 @model AppUserViewModel;
-@inject AppUserService appUserService
+@inject IAppUserService appUserService
 @{
     var user = appUserService.GetById(Model.UserId);
 }
